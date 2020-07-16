@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://abhay28793:chlorobenzene@dentalsolutions.ouiye.mongodb.net/<dbname>?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://abhay28793:chlorobenzene@dentalsolutions.ouiye.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }

@@ -3,6 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const StaffUser = require('../../models/StaffUser');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 // @route   POST api/staffuser
 // @desc    staff users
@@ -55,9 +57,23 @@ router.post(
       //Encrypt password
       const salt = await bcrypt.genSalt(10);
       staffuser.password = await bcrypt.hash(password, salt);
+      //entry in mongodb
       await staffuser.save();
       //jsonwebtoken
-      res.send('User Registered');
+      const payload = {
+        staffuser: {
+          id: staffuser.id,
+        },
+      };
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.log(err.message);
       res.status(500).send('Server Error');
