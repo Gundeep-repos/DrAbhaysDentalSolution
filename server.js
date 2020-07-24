@@ -20,6 +20,7 @@ app.use('/api/staffregister', require('./routes/api/staffRegister'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/manageadmin', require('./routes/api/manageAdmin'));
 app.use('/api/adminregister', require('./routes/api/adminRegister'));
+app.use('/api/services', require('./routes/api/services'));
 
 const PORT = process.env.PORT || 5000;
 
